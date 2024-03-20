@@ -1,6 +1,9 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+    kotlin("kapt")
+    id("kotlin-kapt")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -18,6 +21,7 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
+        buildConfigField("String", "BASE_URL","\"https://rickandmortyapi.com/api/\"" )
     }
 
     buildTypes {
@@ -38,6 +42,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.1"
@@ -47,6 +52,11 @@ android {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
+}
+
+// Allow references to generated code
+kapt {
+    correctErrorTypes = true
 }
 
 dependencies {
@@ -68,11 +78,33 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
     implementation(libs.androidx.navigation.compose)
     implementation("androidx.compose.ui:ui")
-    implementation("androidx.compose.ui:ui-tooling-preview")
     implementation("androidx.compose.ui:ui-util")
     implementation("androidx.compose.animation:animation")
     implementation("androidx.compose.runtime:runtime")
     implementation("androidx.compose.runtime:runtime-saveable")
-    implementation("androidx.compose.material3:material3")
     implementation("androidx.compose.material:material-icons-extended")
+
+    //Hilt
+    implementation(libs.hilt.android)
+    kapt(libs.dagger.hilt.compiler)
+    implementation("androidx.hilt:hilt-navigation-compose:1.1.0")
+    kapt("androidx.hilt:hilt-compiler:1.1.0")
+
+    //Coil
+    implementation("io.coil-kt:coil-compose:2.3.0")
+
+    //Paging
+    implementation("androidx.paging:paging-compose:3.2.1")
+
+    //okHttp
+    implementation("com.squareup.okhttp3:okhttp:4.9.3")
+    implementation("com.squareup.okhttp3:logging-interceptor:4.9.3")
+
+    //GSON
+    implementation("com.google.code.gson:gson:2.9.1")
+
+    //Retrofit
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation("com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:0.9.2")
 }
