@@ -21,7 +21,6 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
-        buildConfigField("String", "BASE_URL","\"https://rickandmortyapi.com/api/\"" )
     }
 
     buildTypes {

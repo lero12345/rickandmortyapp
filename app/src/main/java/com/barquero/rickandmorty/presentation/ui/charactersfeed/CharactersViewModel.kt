@@ -18,7 +18,7 @@ class CharactersViewModel @Inject constructor(
     private val useCase: GetCharactersUseCase
 ) : ViewModel() {
 
-    private var charactersListData: CharacterApiModel by mutableStateOf(CharacterApiModel())
+    var charactersListData: CharacterApiModel by mutableStateOf(CharacterApiModel())
     val characterFeedState = MutableStateFlow<CharactersUiState>(CharactersUiState.START)
 
     fun getCharacterList() {
