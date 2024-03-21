@@ -10,8 +10,6 @@ class GetCharactersUseCaseImpl(private val characterRepository: CharacterReposit
     override fun execute(): Flow<Result<CharacterApiModel>> {
         return characterRepository.requestCharacters()
             .catch {
-
-                // TODO:  make a mapper for this
                 emit(Result.failure(it))
             }
     }
