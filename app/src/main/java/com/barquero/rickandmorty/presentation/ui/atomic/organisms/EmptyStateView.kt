@@ -41,7 +41,7 @@ private fun EmptyStateViewPreview() {
     PreviewContainer {
         Surface {
             EmptyStateView(
-                titleRes = R.string.no_movies_found,
+                titleRes = R.string.no_characters_found,
                 alignment = Alignment.TopCenter,
                 modifier = Modifier.padding(top = 150.dp)
             )

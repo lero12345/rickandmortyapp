@@ -11,7 +11,7 @@ class MainRouter(
         mainNavController.navigate(Page.Search.route)
     }
 
-    fun navigateToMovieDetails(movieId: Int) {
-        mainNavController.navigate(Page.MovieDetails.route + "/${movieId}")
+    fun navigateToCharacterDetails(characterId: Int) {
+        mainNavController.navigate(Page.CharacterDetail.route + "/${characterId}")
     }
 }

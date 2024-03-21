@@ -5,6 +5,8 @@ import android.content.SharedPreferences
 import com.barquero.rickandmorty.data.api.RickAndMortyService
 import com.barquero.rickandmorty.data.datasource.CharacterRemoteDataSource
 import com.barquero.rickandmorty.data.datasource.FavoritesLocalDataSource
+import com.barquero.rickandmorty.data.repository.CharacterDetailRepository
+import com.barquero.rickandmorty.data.repository.CharacterDetailRepositoryImpl
 import com.barquero.rickandmorty.data.repository.CharacterRepository
 import com.barquero.rickandmorty.data.repository.CharacterRepositoryImpl
 import com.barquero.rickandmorty.data.repository.FavoritesRepository
@@ -12,6 +14,8 @@ import com.barquero.rickandmorty.data.repository.FavoritesRepositoryImpl
 import com.barquero.rickandmorty.data.util.DbHelper
 import com.barquero.rickandmorty.data.util.DispatchersProvider
 import com.barquero.rickandmorty.data.util.DispatchersProviderImpl
+import com.barquero.rickandmorty.domain.usecase.GetCharacterDetailUseCase
+import com.barquero.rickandmorty.domain.usecase.GetCharacterDetailUseCaseImpl
 import com.barquero.rickandmorty.domain.usecase.GetCharactersUseCase
 import com.barquero.rickandmorty.domain.usecase.GetCharactersUseCaseImpl
 import com.barquero.rickandmorty.domain.usecase.GetFavoritesUseCase
@@ -75,4 +79,15 @@ class AppModule {
     fun provideGetFavoritesLocalDataSource(
         dbHelper: DbHelper
     ): FavoritesLocalDataSource = FavoritesLocalDataSource(dbHelper)
+
+    @Provides
+    fun providesCharacterDetailRepository(
+        remoteDataSource: CharacterRemoteDataSource
+    ): CharacterDetailRepository = CharacterDetailRepositoryImpl(remoteDataSource)
+
+    @Provides
+    fun providesCharacterDetailUseCase(
+        repository: CharacterDetailRepository
+    ): GetCharacterDetailUseCase = GetCharacterDetailUseCaseImpl(repository)
+
 }

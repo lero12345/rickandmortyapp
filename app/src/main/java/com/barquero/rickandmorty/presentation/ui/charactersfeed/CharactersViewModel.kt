@@ -7,11 +7,16 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.barquero.rickandmorty.data.api.CharacterApiModel
 import com.barquero.rickandmorty.domain.usecase.GetCharactersUseCase
+import com.barquero.rickandmorty.presentation.util.NavigationState
+import com.barquero.rickandmorty.presentation.util.singleSharedFlow
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.channels.BufferOverflow
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
+
 
 @HiltViewModel
 class CharactersViewModel @Inject constructor(
@@ -20,6 +25,13 @@ class CharactersViewModel @Inject constructor(
 
     var charactersListData: CharacterApiModel by mutableStateOf(CharacterApiModel())
     val characterFeedState = MutableStateFlow<CharactersUiState>(CharactersUiState.START)
+
+    private val _navigationState: MutableSharedFlow<NavigationState> = singleSharedFlow()
+    val navigationState = _navigationState.asSharedFlow()
+
+    fun onCharacterClicked(characterId: Int) {
+        _navigationState.tryEmit(NavigationState.CharacterDetail(characterId))
+    }
 
     fun getCharacterList() {
         viewModelScope.launch {

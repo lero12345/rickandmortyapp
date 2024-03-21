@@ -77,7 +77,7 @@ private fun TopBarPreview() {
         Column {
             TopBar("AppName", true, onThemeUpdated = {}, onSearchClick = {})
             Spacer(modifier = Modifier.padding(10.dp))
-            TopBar("MovieClean", false, onThemeUpdated = {}, onSearchClick = {})
+            TopBar("RyM", false, onThemeUpdated = {}, onSearchClick = {})
         }
     }
 }

@@ -29,7 +29,8 @@ import com.barquero.rickandmorty.presentation.ui.theme.colors
 fun CharactersList(
     characterList: List<CharacterInfoApiModel>,
     lazyGridState: LazyGridState = rememberLazyGridState(),
-    config: CharacterSpanSizeConfig = CharacterSpanSizeConfig(3)
+    config: CharacterSpanSizeConfig = CharacterSpanSizeConfig(3),
+    onCharacterClick: (characterId: Int) -> Unit
 ) {
     val imageSize = ImageSize.getImageFixedSize()
     LazyVerticalGrid(
@@ -45,7 +46,7 @@ fun CharactersList(
             GridItemSpan(spinSize)
         }) { index ->
             when (val character = characterList[index]) {
-                is CharacterInfoApiModel -> CharacterItem(character, imageSize)
+                is CharacterInfoApiModel -> CharacterItem(character, imageSize, onCharacterClick)
                 else -> Loader()
             }
         }
@@ -57,7 +58,7 @@ fun CharactersList(
 private fun CharacterItem(
     character: CharacterInfoApiModel,
     imageSize: ImageSize,
-    onCharacterClick: (movieId: Int) -> Unit = {}
+    onCharacterClick: (characterId: Int) -> Unit = {}
 ) {
     SubcomposeAsyncImage(
         model = character.image,
@@ -68,7 +69,9 @@ private fun CharacterItem(
         modifier = Modifier
             .padding(3.dp)
             .size(imageSize.width, imageSize.height)
-            .clickable { }
+            .clickable {
+                onCharacterClick(character.id)
+            }
             .clip(RoundedCornerShape(2))
     )
 }
