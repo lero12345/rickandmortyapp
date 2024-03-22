@@ -16,17 +16,17 @@ data class InfoApiModel(
 
 data class CharacterInfoApiModel(
     @SerializedName("id") val id: Int,
-    @SerializedName("name") val name: String,
-    @SerializedName("status") val status: String,
-    @SerializedName("species") val species: String,
-    @SerializedName("type") val type: String,
-    @SerializedName("gender") val gender: String,
+    @SerializedName("name") val name: String? = null,
+    @SerializedName("status") val status: String? = null,
+    @SerializedName("species") val species: String? = null,
+    @SerializedName("type") val type: String? = null,
+    @SerializedName("gender") val gender: String? = null,
     @SerializedName("origin") val origin: OriginApiModel? = null,
     @SerializedName("location") val location: LocationApiModel? = null,
-    @SerializedName("image") val image: String,
-    @SerializedName("episode") val episode: List<String>,
-    @SerializedName("url") val url: String,
-    @SerializedName("created") val created: String
+    @SerializedName("image") val image: String? = null,
+    @SerializedName("episode") val episode: List<String>? = null,
+    @SerializedName("url") val url: String? = null,
+    @SerializedName("created") val created: String? = null
 )
 
 data class OriginApiModel(

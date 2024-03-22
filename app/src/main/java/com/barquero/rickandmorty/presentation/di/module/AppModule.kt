@@ -3,21 +3,25 @@ package com.barquero.rickandmorty.presentation.di.module
 import android.content.Context
 import android.content.SharedPreferences
 import com.barquero.rickandmorty.data.api.RickAndMortyService
+import com.barquero.rickandmorty.data.database.FavoritesDao
 import com.barquero.rickandmorty.data.datasource.CharacterRemoteDataSource
 import com.barquero.rickandmorty.data.datasource.FavoritesLocalDataSource
 import com.barquero.rickandmorty.data.repository.CharacterDetailRepository
 import com.barquero.rickandmorty.data.repository.CharacterDetailRepositoryImpl
 import com.barquero.rickandmorty.data.repository.CharacterRepository
 import com.barquero.rickandmorty.data.repository.CharacterRepositoryImpl
+import com.barquero.rickandmorty.data.repository.FavoritesByIdRepository
+import com.barquero.rickandmorty.data.repository.FavoritesByIdRepositoryImpl
 import com.barquero.rickandmorty.data.repository.FavoritesRepository
 import com.barquero.rickandmorty.data.repository.FavoritesRepositoryImpl
-import com.barquero.rickandmorty.data.util.DbHelper
 import com.barquero.rickandmorty.data.util.DispatchersProvider
 import com.barquero.rickandmorty.data.util.DispatchersProviderImpl
 import com.barquero.rickandmorty.domain.usecase.GetCharacterDetailUseCase
 import com.barquero.rickandmorty.domain.usecase.GetCharacterDetailUseCaseImpl
 import com.barquero.rickandmorty.domain.usecase.GetCharactersUseCase
 import com.barquero.rickandmorty.domain.usecase.GetCharactersUseCaseImpl
+import com.barquero.rickandmorty.domain.usecase.GetFavoriteByIdUseCase
+import com.barquero.rickandmorty.domain.usecase.GetFavoriteByIdUseCaseImpl
 import com.barquero.rickandmorty.domain.usecase.GetFavoritesUseCase
 import com.barquero.rickandmorty.domain.usecase.GetFavoritesUseCaseImpl
 import com.barquero.rickandmorty.presentation.di.AppSettingsSharedPreference
@@ -77,8 +81,8 @@ class AppModule {
 
     @Provides
     fun provideGetFavoritesLocalDataSource(
-        dbHelper: DbHelper
-    ): FavoritesLocalDataSource = FavoritesLocalDataSource(dbHelper)
+        favoritesDao: FavoritesDao
+    ): FavoritesLocalDataSource = FavoritesLocalDataSource(favoritesDao)
 
     @Provides
     fun providesCharacterDetailRepository(
@@ -89,5 +93,15 @@ class AppModule {
     fun providesCharacterDetailUseCase(
         repository: CharacterDetailRepository
     ): GetCharacterDetailUseCase = GetCharacterDetailUseCaseImpl(repository)
+
+    @Provides
+    fun providesGetFavoritesByIdUseCase(
+        favoritesByIdRepository: FavoritesByIdRepository
+    ): GetFavoriteByIdUseCase = GetFavoriteByIdUseCaseImpl(favoritesByIdRepository)
+
+    @Provides
+    fun provideFavoritesByIdRepository(
+        favoritesLocalDataSource: FavoritesLocalDataSource
+    ): FavoritesByIdRepository = FavoritesByIdRepositoryImpl(favoritesLocalDataSource)
 
 }
