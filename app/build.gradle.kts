@@ -9,7 +9,7 @@ plugins {
 android {
     namespace = "com.barquero.rickandmorty"
     compileSdk = 34
-    
+
     defaultConfig {
         applicationId = "com.barquero.rickandmorty"
         minSdk = 24
@@ -110,17 +110,12 @@ dependencies {
     //Room
     implementation("androidx.room:room-runtime:2.6.1")
     kapt("androidx.room:room-compiler:2.6.1")
-    // Opcional - Kotlin Extensions and Coroutines support for Room
     implementation("androidx.room:room-ktx:2.6.1")
 
-    //Testing
-    // Kotlin Coroutines
-    testImplementation ("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3")// Asegúrate de usar la versión más reciente
-
-// MockK para simulación de dependencias
-    testImplementation ("io.mockk:mockk:1.12.0" )// Asegúrate de usar la versión más reciente
-
-
+    //Testing Kotlin Coroutines
+    testImplementation ("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3")
+    // MockK
+    testImplementation ("io.mockk:mockk:1.12.0" )//
     //Mockito
     testImplementation( "org.mockito:mockito-core:5.0.0")
     testImplementation ("org.mockito:mockito-inline:5.0.0")
