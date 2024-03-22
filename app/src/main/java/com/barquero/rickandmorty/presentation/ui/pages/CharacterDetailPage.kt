@@ -63,7 +63,6 @@ fun CharacterDetailScreen(
                     contentDescription = null,
                     Modifier.size(24.dp)
                 )
-//                Icon(imageVector = Icons.Outlined.HeartBroken, contentDescription = null)
             }
         },
         topBar = {

@@ -10,9 +10,11 @@ import androidx.navigation.navArgument
 import com.barquero.rickandmorty.presentation.navigation.Graphs
 import com.barquero.rickandmorty.presentation.navigation.Page
 import com.barquero.rickandmorty.presentation.ui.characterdetail.CharacterDetailViewModel
+import com.barquero.rickandmorty.presentation.ui.characterssearch.SearchViewModel
 import com.barquero.rickandmorty.presentation.ui.navigationbar.NavigationBarNestedGraph
 import com.barquero.rickandmorty.presentation.ui.navigationbar.NavigationBarScreen
 import com.barquero.rickandmorty.presentation.ui.pages.CharacterDetailPage
+import com.barquero.rickandmorty.presentation.ui.pages.SearchCharacterPage
 import com.barquero.rickandmorty.presentation.util.composableHorizontalSlide
 
 @Composable
@@ -44,6 +46,7 @@ fun MainGraph(
         }
 
         composableHorizontalSlide(route = Page.Search.route) {
+            SearchCharacterPage(mainNavController = mainNavController, viewModel = hiltViewModel<SearchViewModel>() )
         }
 
         composableHorizontalSlide(
