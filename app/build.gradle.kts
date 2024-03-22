@@ -9,14 +9,7 @@ plugins {
 android {
     namespace = "com.barquero.rickandmorty"
     compileSdk = 34
-
-    packaging {
-        // Para conservar el primer archivo encontrado y descartar los demás duplicados
-//        pickFirst("META-INF/LICENSE.md")
-        // O para excluir completamente el archivo y no incluirlo en el APK o AAB
-         resources.excludes.add("META-INF/LICENSE.md")
-    }
-
+    
     defaultConfig {
         applicationId = "com.barquero.rickandmorty"
         minSdk = 24
