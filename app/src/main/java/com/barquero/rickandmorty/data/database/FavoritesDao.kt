@@ -1,6 +1,7 @@
 package com.barquero.rickandmorty.data.database
 
 import androidx.room.Dao
+import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
@@ -15,4 +16,7 @@ interface FavoritesDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun add(favoriteData: Favorite)
+
+    @Query("DELETE FROM favorites WHERE characterId=:characterId")
+    fun remove(characterId: Int)
 }

@@ -8,6 +8,14 @@ class FavoritesRepositoryImpl(
     private val dataSource: FavoritesLocalDataSource
 ) : FavoritesRepository {
 
-    override fun requestFavoriteCharacters(): Flow<Result<List<CharacterInfoApiModel>>> =
+    override suspend fun requestFavoriteCharacters(): Flow<Result<List<CharacterInfoApiModel>>> =
         dataSource.requestFavorites()
+
+    override suspend fun removeFavorite(characterId: Int) {
+        dataSource.removeFavorite(characterId)
+    }
+
+    override suspend fun addFavorite(characterId: Int) {
+        dataSource.addFavoriteCharacter(CharacterInfoApiModel(id = characterId))
+    }
 }

@@ -9,7 +9,7 @@ class GetFavoritesUseCaseImpl(
     private val favoritesRepository: FavoritesRepository
 ) : GetFavoritesUseCase {
 
-    override fun execute(): Flow<Result<List<CharacterInfoApiModel>>> {
+    override suspend fun execute(): Flow<Result<List<CharacterInfoApiModel>>> {
         return favoritesRepository.requestFavoriteCharacters()
             .catch {
                 emit(Result.failure(it))

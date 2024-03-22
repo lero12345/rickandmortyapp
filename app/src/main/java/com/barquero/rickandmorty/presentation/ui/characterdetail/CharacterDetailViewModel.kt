@@ -4,13 +4,16 @@ import android.util.Log
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.barquero.rickandmorty.domain.usecase.AddCharacterFavoriteUseCase
 import com.barquero.rickandmorty.domain.usecase.GetCharacterDetailUseCase
 import com.barquero.rickandmorty.domain.usecase.GetFavoriteByIdUseCase
 import com.barquero.rickandmorty.domain.usecase.GetFavoritesUseCase
+import com.barquero.rickandmorty.domain.usecase.RemoveFavoriteUseCase
 import com.barquero.rickandmorty.presentation.navigation.Page
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -18,6 +21,8 @@ import javax.inject.Inject
 class CharacterDetailViewModel @Inject constructor(
     private val getCharacterDetailUseCase: GetCharacterDetailUseCase,
     private val getFavoritesUseCase: GetFavoritesUseCase,
+    private val addCharacterFavoriteUseCase: AddCharacterFavoriteUseCase,
+    private val removeFavoriteUseCase: RemoveFavoriteUseCase,
     private val getFavoriteByIdUseCase: GetFavoriteByIdUseCase,
     savedStateHandle: SavedStateHandle,
 ) : ViewModel() {
@@ -32,7 +37,9 @@ class CharacterDetailViewModel @Inject constructor(
     fun onFavoriteClicked() {
         viewModelScope.launch {
             checkFavoriteStatus(characterId).onSuccess { isFavorite ->
-                Log.d("cheack",  "asdasd")
+                if (isFavorite) removeFavoriteUseCase.removeFavorite(characterId)
+                else addCharacterFavoriteUseCase.execute(characterId)
+                _uiState.update { it.copy(isFavorite = !isFavorite) }
             }
         }
     }
