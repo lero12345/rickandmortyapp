@@ -1,6 +1,6 @@
 package com.barquero.rickandmorty.domain.usecase
 
-import com.barquero.rickandmorty.data.api.CharacterInfoApiModel
+import com.barquero.rickandmorty.data.model.CharacterInfoApiModel
 import kotlinx.coroutines.flow.Flow
 
 interface GetFavoritesUseCase {

@@ -8,7 +8,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import com.barquero.rickandmorty.R
-import com.barquero.rickandmorty.data.api.CharacterInfoApiModel
+import com.barquero.rickandmorty.data.model.CharacterInfoApiModel
 import com.barquero.rickandmorty.presentation.ui.atomic.organisms.CharactersList
 import com.barquero.rickandmorty.presentation.ui.atomic.organisms.EmptyStateView
 import com.barquero.rickandmorty.presentation.ui.atomic.organisms.LoaderFullScreen

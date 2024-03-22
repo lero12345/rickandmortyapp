@@ -1,6 +1,6 @@
 package com.barquero.rickandmorty.domain.usecase
 
-import com.barquero.rickandmorty.data.api.CharacterApiModel
+import com.barquero.rickandmorty.data.model.CharacterApiModel
 import kotlinx.coroutines.flow.Flow
 
 interface GetCharactersUseCase {

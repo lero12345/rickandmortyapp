@@ -1,5 +1,7 @@
 package com.barquero.rickandmorty.data.api
 
+import com.barquero.rickandmorty.data.model.CharacterApiModel
+import com.barquero.rickandmorty.data.model.CharacterInfoApiModel
 import retrofit2.http.GET
 import retrofit2.http.Path
 

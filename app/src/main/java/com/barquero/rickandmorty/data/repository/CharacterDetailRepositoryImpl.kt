@@ -1,6 +1,6 @@
 package com.barquero.rickandmorty.data.repository
 
-import com.barquero.rickandmorty.data.api.CharacterInfoApiModel
+import com.barquero.rickandmorty.data.model.CharacterInfoApiModel
 import com.barquero.rickandmorty.data.datasource.CharacterRemoteDataSource
 
 class CharacterDetailRepositoryImpl(

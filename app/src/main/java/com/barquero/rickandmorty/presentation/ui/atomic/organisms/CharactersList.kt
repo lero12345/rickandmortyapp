@@ -21,8 +21,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import coil.compose.SubcomposeAsyncImage
 import com.barquero.rickandmorty.R
-import com.barquero.rickandmorty.data.api.CharacterApiModel
-import com.barquero.rickandmorty.data.api.CharacterInfoApiModel
+import com.barquero.rickandmorty.data.model.CharacterInfoApiModel
 import com.barquero.rickandmorty.presentation.ui.theme.colors
 
 @Composable

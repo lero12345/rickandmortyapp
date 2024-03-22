@@ -5,12 +5,11 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.barquero.rickandmorty.data.api.CharacterApiModel
+import com.barquero.rickandmorty.data.model.CharacterApiModel
 import com.barquero.rickandmorty.domain.usecase.GetCharactersUseCase
 import com.barquero.rickandmorty.presentation.util.NavigationState
 import com.barquero.rickandmorty.presentation.util.singleSharedFlow
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asSharedFlow

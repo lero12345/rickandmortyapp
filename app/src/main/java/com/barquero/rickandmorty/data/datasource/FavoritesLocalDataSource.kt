@@ -1,6 +1,6 @@
 package com.barquero.rickandmorty.data.datasource
 
-import com.barquero.rickandmorty.data.api.CharacterInfoApiModel
+import com.barquero.rickandmorty.data.model.CharacterInfoApiModel
 import com.barquero.rickandmorty.data.database.Favorite
 import com.barquero.rickandmorty.data.database.FavoritesDao
 import com.barquero.rickandmorty.data.util.DiskExecutor

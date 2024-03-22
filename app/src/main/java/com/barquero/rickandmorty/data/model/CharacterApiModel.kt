@@ -1,4 +1,4 @@
-package com.barquero.rickandmorty.data.api
+package com.barquero.rickandmorty.data.model
 
 import com.google.gson.annotations.SerializedName
 
