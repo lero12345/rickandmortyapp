@@ -11,6 +11,7 @@ import com.barquero.rickandmorty.domain.usecase.GetFavoritesUseCase
 import com.barquero.rickandmorty.domain.usecase.RemoveFavoriteUseCase
 import com.barquero.rickandmorty.presentation.navigation.Page
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.async
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
@@ -47,12 +48,18 @@ class CharacterDetailViewModel @Inject constructor(
     init {
         characterId = savedStateHandle[Page.CharacterDetail.CHARACTER_ID] ?: 0
         viewModelScope.launch {
+            var isFavorite = false
+            async { checkFavoriteStatus(characterId) }.await().onSuccess {
+                isFavorite = it
+            }.onFailure { isFavorite = false }
+
             getCharacterDetailUseCase.execute(characterId).onSuccess {
                 _uiState.value = CharacterDetailUiState(
                     it.id,
                     it.name.orEmpty(),
                     it.status.orEmpty(),
-                    it.image.orEmpty()
+                    it.image.orEmpty(),
+                    isFavorite = isFavorite
                 )
             }.onFailure { Log.d("error", "failed") }
         }
